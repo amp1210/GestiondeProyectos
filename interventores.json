@@ -1,0 +1,52 @@
+{"Albeiro":{
+            "Nombre": "Albeiro",
+            "Apellido": "Salazar",
+            "Cedula": 71222072,
+            "Celular": [3014259624,
+                        3226590110,
+                        3022092512,
+                        3053088913],
+            "ARL": "SURA",
+            "EPS": "SURA EPS"},
+"Jose":{
+            "Cedula": 98498438,
+            "Celular": [3016822955,
+                        3206359465],
+            "ARL": "SURA",
+            "EPS": "SURA EPS"},
+"Duvier":{
+            "Nombre": "Duvier",
+            "Apellido": "Gasca",
+            "Cedula": 98532724,
+            "Celular": [3152754721],
+            "ARL": "SURA",
+            "EPS": "SURA EPS"},
+"Andres":{
+            "Nombre": "Andres",
+            "Apellido": "Sanchez",
+            "Cedula": 1035223933,
+            "Celular": [3182957493],
+            "ARL": "SURA",
+            "EPS": "SURA EPS"},
+"Edward":{
+            "Nombre": "Edward",
+            "Apellido": "Londoño",
+            "Cedula": 15371183,
+            "Celular": [3153848823],
+            "ARL": "SURA",
+            "EPS": "SURA EPS"},
+"Camilo":{
+            "Nombre": "Camilo",
+            "Apellido": "Londoño",
+            "Cedula": 1152451109,
+            "Celular": [3126408341],
+            "ARL": "SURA",
+            "EPS": "SURA EPS"},
+"Alejandro":{
+            "Nombre": "Alejandro",
+            "Apellido": "Montoya",
+            "Cedula": 98715430,
+            "Celular": [3196398847],
+            "ARL": "SURA",
+            "EPS": "SAVIA SALUD EPS"}        
+        }
