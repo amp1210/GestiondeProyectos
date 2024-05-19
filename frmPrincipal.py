@@ -344,6 +344,9 @@ class frmMain(Frame):
     def menuservicio(self):
         self.nextVentana = 3
         self.ordenVentanas()
+
+    def menuconfiguracion(self):
+        pass
     
     def widgets(self):
         self.estadoVentana = 1
@@ -352,44 +355,50 @@ class frmMain(Frame):
         self.cantidad = StringVar()
         self.cantidad.set(numSedes)
         
-        #Creacion de Frame para informacion Basica
+        #Creacion de Frame para informacion Basica, frame principal
         self.frmInformacionBasica = Frame(self.master, bg='grey')
         self.frmInformacionBasica.place(relx=0, rely=0, relwidth=1, relheight=1)
-        self.frmInformacionSubRegion = Frame(self.frmInformacionBasica, bg='grey')
+
+        #Creacion de Frame para cantidad de sedes
+        self.frmcantidadsedes = Frame(self.frmInformacionBasica, width=20, height=20)
+        self.frmcantidadsedes.place(relx=0.005, rely=0.005, relwidth=0.20, relheight=0.10)
+
+        #creacion de Frame para cantidad por municipio
+        self.frmcantidadxmunicipio = Frame(self.frmInformacionBasica, width=20, height=20)
+        self.frmcantidadxmunicipio.place(relx=0.25, rely=0.005, relwidth=0.30, relheight=0.50)
+
+        #creacion de frame para informacion de subregiones
+        self.frmInformacionSubRegion = Frame(self.frmInformacionBasica)
         self.frmInformacionSubRegion.place(relx=0.005, rely=0.15)
+
         #Creacion de la barra de menu para las diferentes opciones
         self.menubar = Menu(self.master)
         self.master.config(menu=self.menubar)
+        self.configuracionmenu = Menu(self.menubar, tearoff=0, font=self.letraTipo)
+        self.configuracionmenu.add_command(label="Subregion", command=self.menuconfiguracion, font=self.letraTipo)
+        self.configuracionmenu.add_command(label="Municipios", command=self.menuconfiguracion, font=self.letraTipo)
+        self.configuracionmenu.add_separator()
+        self.configuracionmenu.add_command(label="Salir", command=self.salir, font=self.letraTipo)
         self.sedesmenu = Menu(self.menubar, tearoff=0)
         self.sedesmenu.add_command(label="Sedes", command=self.menusedes, font=self.letraTipo)
-        self.sedesmenu.add_separator()
-        self.sedesmenu.add_command(label="Salir", command=self.salir, font=self.letraTipo)
         self.serviciosmenu = Menu(self.menubar, tearoff=0)
         self.serviciosmenu.add_command(label="Servicios", font=self.letraTipo, command=self.menuservicio)
         self.visitasmenu =  Menu(self.menubar, tearoff=0)
         self.visitasmenu.add_command(label="Interventores", font=self.letraTipo, command=self.interventores)
+        self.menubar.add_cascade(label='Configuración', menu=self.configuracionmenu, font=self.letraTipo)
         self.menubar.add_cascade(label='Sedes', menu=self.sedesmenu, font=self.letraTipo)
         self.menubar.add_cascade(label='Servicios', menu=self.serviciosmenu, font=self.letraTipo)
         self.menubar.add_cascade(label='Visitas', menu=self.visitasmenu, font=self.letraTipo)
+        
         #Informacion que se muestra en la pantalla inicial
-        Label(self.frmInformacionBasica, text='Cantidad de Sedes', font=('Castellar', 18), bg='grey').place(relx=0.005, rely=0.005)
-        Label(self.frmInformacionBasica, textvariable=self.cantidad, font=('Castellar', 24), bg='grey').place(relx=0.09, rely=0.05)
+        Label(self.frmcantidadsedes, text='Cantidad de Sedes', font=('Castellar', 18), bg='grey').grid(column=0, row=0)
+        #place(relx=0.005, rely=0.01)
+        Label(self.frmcantidadsedes, textvariable=self.cantidad, font=('Castellar', 24), bg='grey').grid(column=0, row=1)
+        #place(relx=0.09, rely=0.01)
+
+        Label(self.frmcantidadxmunicipio, text="Cantidad de Sedes por Municipio", font=('Castellar', 18)).pack()
+
         Label(self.frmInformacionSubRegion, text="Cantidad de Sedes Por Subregion", font=('Castellar', 14), bg='grey').grid(column=0, row=0, columnspan=2)
-        Label(self.frmInformacionSubRegion, text=mtzSubRegion[0][0], font=self.letraTipo, bg='grey').grid(column=0, row=1, sticky=W)
-        Label(self.frmInformacionSubRegion, text=mtzSubRegion[0][1], font=self.letraTipo, bg='grey').grid(column=1, row=1)
-        Label(self.frmInformacionSubRegion, text=mtzSubRegion[1][0], font=self.letraTipo, bg='grey').grid(column=0, row=2, sticky=W)
-        Label(self.frmInformacionSubRegion, text=mtzSubRegion[1][1], font=self.letraTipo, bg='grey').grid(column=1, row=2)
-        Label(self.frmInformacionSubRegion, text=mtzSubRegion[2][0], font=self.letraTipo, bg='grey').grid(column=0, row=3, sticky=W)
-        Label(self.frmInformacionSubRegion, text=mtzSubRegion[2][1], font=self.letraTipo, bg='grey').grid(column=1, row=3)
-        Label(self.frmInformacionSubRegion, text=mtzSubRegion[3][0], font=self.letraTipo, bg='grey').grid(column=0, row=4, sticky=W)
-        Label(self.frmInformacionSubRegion, text=mtzSubRegion[3][1], font=self.letraTipo, bg='grey').grid(column=1, row=4)
-        Label(self.frmInformacionSubRegion, text=mtzSubRegion[4][0], font=self.letraTipo, bg='grey').grid(column=0, row=5, sticky=W)
-        Label(self.frmInformacionSubRegion, text=mtzSubRegion[4][1], font=self.letraTipo, bg='grey').grid(column=1, row=5)
-        Label(self.frmInformacionSubRegion, text=mtzSubRegion[5][0], font=self.letraTipo, bg='grey').grid(column=0, row=6, sticky=W)
-        Label(self.frmInformacionSubRegion, text=mtzSubRegion[5][1], font=self.letraTipo, bg='grey').grid(column=1, row=6)
-        Label(self.frmInformacionSubRegion, text=mtzSubRegion[6][0], font=self.letraTipo, bg='grey').grid(column=0, row=7, sticky=W)
-        Label(self.frmInformacionSubRegion, text=mtzSubRegion[6][1], font=self.letraTipo, bg='grey').grid(column=1, row=7)
-        Label(self.frmInformacionSubRegion, text=mtzSubRegion[7][0], font=self.letraTipo, bg='grey').grid(column=0, row=8, sticky=W)
-        Label(self.frmInformacionSubRegion, text=mtzSubRegion[7][1], font=self.letraTipo, bg='grey').grid(column=1, row=8)
-        Label(self.frmInformacionSubRegion, text=mtzSubRegion[8][0], font=self.letraTipo, bg='grey').grid(column=0, row=9, sticky=W)
-        Label(self.frmInformacionSubRegion, text=mtzSubRegion[8][1], font=self.letraTipo, bg='grey').grid(column=1, row=9)
+        for i in range(len(mtzSubRegion)):
+            Label(self.frmInformacionSubRegion, text=mtzSubRegion[i][0], font=self.letraTipo).grid(column=0, row=i+1, sticky=W)
+            Label(self.frmInformacionSubRegion, text=mtzSubRegion[i][1], font=self.letraTipo).grid(column=1, row=i+1)
