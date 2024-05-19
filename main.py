@@ -1,17 +1,18 @@
 from tkinter import messagebox
 from tkinter import *
 import frmPrincipal
+from gui import frmdashboard
 import os, errno
 
 if (__name__ == "__main__"):
     if os.path.isfile(r'listadosedes.csv'):
-        ventana = Tk()
-        w, h = ventana.winfo_screenwidth(), ventana.winfo_screenheight()
-        ventana.geometry("%dx%d+0+0" % (w, h))
-        ventana.state('zoomed')
-        ventana.overrideredirect(0)
-        ventana.resizable(0,0)
-        app = frmPrincipal.frmMain(ventana)
+        #ventana = Tk()
+        #w, h = ventana.winfo_screenwidth(), ventana.winfo_screenheight()
+        #ventana.geometry("%dx%d+0+0" % (w, h))
+        #ventana.state('zoomed')
+        #ventana.overrideredirect(0)
+        #ventana.resizable(0,0)
+        app = frmdashboard.DashBoard()
         app.mainloop()
     else:
         municipios = open('municipios.csv', "w")
