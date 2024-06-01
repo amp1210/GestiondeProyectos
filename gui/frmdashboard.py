@@ -1,5 +1,5 @@
 import tkinter as tk
-from gui import frmestablecimientos, frmmunicipios, frmsubregiones
+from gui import frmestablecimientos, frmmunicipios, frmsubregiones, frmtrafico
 
 class DashBoard(tk.Tk):
     def __init__(self, *args, **kwargs):
@@ -7,43 +7,53 @@ class DashBoard(tk.Tk):
         self.title("Gestion De Proyectos")
         w, h = self.winfo_screenwidth(), self.winfo_screenheight()
         self.geometry("%dx%d+0+0" % (w, h))
-        
 
         container = tk.Frame(self, background='red')
         container.pack(side="top", fill="both", expand=True)
         container.grid_rowconfigure(0, weight=1)
         container.grid_columnconfigure(0, weight=1)
 
-        containerancho, containeralto = container.winfo_screenwidth, container.winfo_screenheight
-        print(containerancho)
-        print(containeralto)
-        print(w)
-        print(h)
         frmnavegacion = tk.Frame(container, background='green', width=100, height=h)
         frmnavegacion.place(x=5, y=25, height=675, width=200)
 
-        tk.Label(frmnavegacion, text="Este es la vista de navegacion").pack()
+        self.frmprincipal = tk.Frame(container, background='yellow')
+        self.frmprincipal.place(x=255, y=25, relwidth=0.85, relheight=0.9)
 
-        frmprincipal = tk.Frame(container, background='yellow')
-        frmprincipal.place(x=255, y=25, width=1100, height=675)
+        btnestablecimientos = tk.Button(frmnavegacion, text='Establecimientos', command=self.establecimiento)
+        btnestablecimientos.pack(pady=5)
 
-        tk.Label(frmprincipal, text="Este es la vista principal que cambia").pack()
+        btnsubregiones = tk.Button(frmnavegacion, text='SubRegiones')
+        btnsubregiones.pack(pady=5)
 
-        #label = tk.Label(container, text="Este es la vista de dashboard").pack()
+        btnmunicipios = tk.Button(frmnavegacion, text='Municipios')
+        btnmunicipios.pack(pady=5)
 
-        """
+        btntrafico = tk.Button(frmnavegacion, text='Trafico', command=self.trafico)
+        btntrafico.pack(pady=5)
+
+        #se almacenan las vistas generadas por los usuarios si ya han sido generadas.
         self.gui = {}
-        for vista in (frmestablecimientos.Establecimientos, frmmunicipios.Municipios, frmsubregiones.Subregiones):
-            page_name = vista.__name__
-            frame = vista(parent=container, controller=self)
-            self.gui[page_name] = frame
-            frame.grid(row=0, column=0, sticky="nsew")
 
-        print(self.gui)
-        for vista in range(len(self.gui)):
-            print(vista)
-        #self.mostrar_vista("Establecimientos")
-        """
+    def limpiar_vista(self):
+        # Elimina todos los widgets de frmprincipal
+        for widget in self.frmprincipal.winfo_children():
+            widget.destroy()
+
+    def establecimiento(self):
+        page_name = 'Establecimientos'
+        self.limpiar_vista()
+        frame = frmestablecimientos.Establecimientos(parent=self.frmprincipal, controller=self)
+        self.gui[page_name] = frame
+        frame.grid(row=0, column=0, sticky="nsew")
+        self.mostrar_vista(page_name)
+
+    def trafico(self):
+        page_name = 'Trafico'
+        self.limpiar_vista()
+        frame = frmtrafico.Trafico(parent=self.frmprincipal, controller=self)
+        self.gui[page_name] = frame
+        frame.grid(row=0, column=0, sticky="nsew")
+        self.mostrar_vista(page_name)
 
     def mostrar_vista(self, page_name):
         frame = self.gui[page_name]
