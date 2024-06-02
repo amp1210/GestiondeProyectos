@@ -22,10 +22,10 @@ class DashBoard(tk.Tk):
         btnestablecimientos = tk.Button(frmnavegacion, text='Establecimientos', command=self.establecimiento)
         btnestablecimientos.pack(pady=5)
 
-        btnsubregiones = tk.Button(frmnavegacion, text='SubRegiones')
+        btnsubregiones = tk.Button(frmnavegacion, text='SubRegiones', command=self.subregiones)
         btnsubregiones.pack(pady=5)
 
-        btnmunicipios = tk.Button(frmnavegacion, text='Municipios')
+        btnmunicipios = tk.Button(frmnavegacion, text='Municipios', command=self.municipios)
         btnmunicipios.pack(pady=5)
 
         btntrafico = tk.Button(frmnavegacion, text='Trafico', command=self.trafico)
@@ -51,6 +51,22 @@ class DashBoard(tk.Tk):
         page_name = 'Trafico'
         self.limpiar_vista()
         frame = frmtrafico.Trafico(parent=self.frmprincipal, controller=self)
+        self.gui[page_name] = frame
+        frame.grid(row=0, column=0, sticky="nsew")
+        self.mostrar_vista(page_name)
+    
+    def subregiones(self):
+        page_name = 'Subregiones'
+        self.limpiar_vista()
+        frame = frmsubregiones.Subregiones(parent=self.frmprincipal, controller=self)
+        self.gui[page_name] = frame
+        frame.grid(row=0, column=0, sticky="nsew")
+        self.mostrar_vista(page_name)
+
+    def municipios(self):
+        page_name = 'Municipios'
+        self.limpiar_vista()
+        frame = frmmunicipios.Municipios(parent=self.frmprincipal, controller=self)
         self.gui[page_name] = frame
         frame.grid(row=0, column=0, sticky="nsew")
         self.mostrar_vista(page_name)
