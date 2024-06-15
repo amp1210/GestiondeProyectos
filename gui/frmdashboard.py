@@ -7,6 +7,7 @@ class DashBoard(tk.Tk):
         self.title("Gestion De Proyectos")
         w, h = self.winfo_screenwidth(), self.winfo_screenheight()
         self.geometry("%dx%d+0+0" % (w, h))
+        self.state('zoomed')
 
         container = tk.Frame(self, background='red')
         container.pack(side="top", fill="both", expand=True)
